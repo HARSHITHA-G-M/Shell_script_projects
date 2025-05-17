@@ -1,0 +1,24 @@
+#!/bin/bash
+
+echo "welocme to simple calculator working"
+
+read -p "Enter first number: " a
+read -p "Enter second number: " b
+read -p "Enter operation (+ - * /): " op
+
+case "$op" in
+  +) echo "$a + $b = $((a + b))" ;;
+  -) echo "$a - $b = $((a - b))" ;;
+  \*) echo "$a * $b = $((a * b))" ;;
+  /) 
+    if [ "$b" -eq 0 ]; then
+      echo "Error: Division by zero"
+    else
+	result=$(echo "scale=4; $a / $b" | bc)
+        echo "$a / $b = $result"
+    fi
+    ;;
+  *) echo "Invalid operation" ;;
+esac
+
+

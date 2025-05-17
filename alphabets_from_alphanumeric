@@ -1,0 +1,7 @@
+#!/bin/bash
+
+read -p "enter alphanumeric string : " input
+
+output=$(echo "$input" | tr -d '0-9')
+echo "Alphabets: $output"
+

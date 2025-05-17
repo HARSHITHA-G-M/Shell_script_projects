@@ -1,0 +1,10 @@
+#!/bin/bash
+#ask user for input
+read -p "Enter a string with letters and numbers: " input
+
+# Remove all letters, keep only digits
+digits=$(echo "$input" | tr -cd '0-9')
+
+# Display result
+echo "Digits: $digits"
+

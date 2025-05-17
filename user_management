@@ -1,0 +1,46 @@
+#!/bin/bash
+while true; do
+  echo "1. Add user"
+  echo "2. Delete user"
+  echo "3. List users"
+  echo "4. Exit"
+  
+  read -p "Choose an option: " choice
+  
+  case $choice in
+    1) 
+      read -p "Enter username to add: " user
+      if sudo useradd "$user"; then
+        echo "User '$user' created successfully."
+      else
+        echo "Failed to create user '$user'."
+      fi
+      ;;
+      
+    2) 
+      read -p "Enter username to delete: " user
+      if sudo deluser "$user"; then
+        echo "User '$user' deleted successfully."
+      else
+        echo "Failed to delete user '$user'."
+      fi
+      ;;
+      
+    3) 
+      echo "User list:"
+      cut -d: -f1 /etc/passwd
+      ;;
+      
+    4) 
+      echo "Exiting..."
+      exit 0
+      ;;
+      
+    *) 
+      echo "Invalid option, please try again."
+      ;;
+  esac
+
+  echo 
+done
+

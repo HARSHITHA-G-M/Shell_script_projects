@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# Check if you gave any folder names
+if [ $# -eq 0 ]; then
+  echo "Please give me at least one folder name."
+  exit 1
+fi
+
+# For each folder name you gave
+for folder in "$@"
+do
+  # Check if this is a folder
+  if [ -d "$folder" ]; then
+    echo "Disk space used by $folder:"
+    du -sh "$folder"
+  else
+    echo "Oops! $folder is not a folder."
+  fi
+done
+

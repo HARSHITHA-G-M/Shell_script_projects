@@ -1,0 +1,20 @@
+#!/bin/bash
+
+echo "System Health Report - $(date)"
+echo "==============================="
+
+echo "CPU Load:"
+uptime
+
+echo -e "\nMemory Usage:"
+free -m
+
+echo -e "\nDisk Usage:"
+df -h | grep '/$'
+
+echo -e "\nNetwork Status:"
+ip -4 addr show | grep inet
+
+echo -e "\nRunning Services (e.g., sshd, nginx):"
+systemctl is-active sshd nginx
+

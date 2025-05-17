@@ -1,0 +1,19 @@
+#!/bin/bash
+
+DIR=${1:-.}  # Default to current directory if none provided
+
+mkdir -p Images Documents Videos Others
+
+for file in "$DIR"/*; do
+  if [ -f "$file" ]; then
+    case "${file,,}" in
+      *.jpg|*.jpeg|*.png|*.gif) mv "$file" Images/ ;;
+      *.pdf|*.doc|*.docx|*.txt) mv "$file" Documents/ ;;
+      *.mp4|*.mkv|*.avi) mv "$file" Videos/ ;;
+      *) mv "$file" Others/ ;;
+    esac
+  fi
+done
+
+echo "Files organized in $DIR"
+
